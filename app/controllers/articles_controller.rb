@@ -14,6 +14,7 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
     @article.save
+    redirect_to restaurant_path(@restaurant)
   end
 
   def edit
@@ -21,10 +22,12 @@ class ArticlesController < ApplicationController
 
   def update
     @article.update(article_params)
+    redirect_to restaurant_path(@restaurant)
   end
 
   def destroy
     @article.destroy
+    redirect_to restaurants_path
   end
 
   private
@@ -35,4 +38,5 @@ class ArticlesController < ApplicationController
 
   def article_params
     params.require(:article).permit(:title, :content)
+  end
 end
